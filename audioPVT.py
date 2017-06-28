@@ -64,7 +64,7 @@ while time.time() < timeout:
     #if still emiting low sound
     if time.time() <  maxLowSound:
       #create low sound
-      winsound.Beep(2500, 475) #2500hz sound, 475ms
+      winsound.Beep(2000, 475) #2500hz sound, 475ms
       #gap between low sound
       waitlength = 0.048
       #sleep for 'waitlength' seconds
@@ -80,5 +80,9 @@ while time.time() < timeout:
       time.sleep(waitlength)
 
 #print reaction times
-print(reactionTimes)
 
+output = open("audioPVToutput.txt","w+")
+for s in reactionTimes:
+  output.write(s)
+  output.write("\n")
+output.close()
