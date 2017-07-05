@@ -1,8 +1,8 @@
 import time
 from random import randint
-import winsound
-import msvcrt
+import winsound, msvcrt
 import thread
+from Tkinter import *
 
 #This is a list of the reaction times (ms) for each key press
 reactionTimes = [];
@@ -93,6 +93,36 @@ def runPVT():
 	output.close()
 	sleep(5)
 
-if __name__ == "__main__":
-  runPVT()
+def loadPanes(root):
+	window = PanedWindow(orient=VERTICAL)
+	window.pack(fill=BOTH, expand=1)
 
+	topLabelFrame = Frame(window)
+	topLabel = Label(topLabelFrame, text = "Short Instruction Message")
+	topLabel.pack(side=TOP, padx = 2, pady = 2)
+	topLabelFrame.pack(side=TOP)
+	window.add(topLabelFrame)
+
+	inputWindow = PanedWindow(orient=VERTICAL)
+	inputWindow.pack(fill=BOTH, expand=1)
+
+	durationFrame = Frame(inputWindow)
+	durationLabel = Label(durationFrame, text = "Duration of Test in Seconds:")
+	durationLabel.pack(side=TOP, padx=2, pady=2)
+	
+	durationBox = Entry(durationFrame)
+	durationBox.delete(0, END)
+	durationBox.insert(0, "0")
+	durationBox.pack(side=TOP, padx=2, pady=2)
+	durationFrame.pack(side=TOP)
+		
+
+
+	window.add(inputWindow)
+
+if __name__ == "__main__": 
+  global root
+  root = Tk()
+  root.geometry("800x600")
+  loadPanes(root)
+  root.mainloop()
